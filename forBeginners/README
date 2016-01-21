@@ -11,3 +11,5 @@ There should be a log-in system to allow only admin access to the grading system
 Make sure you use dictionaries and lists for storing student’s data.
 Use Python functions as much as you can
 Hint: Statistics module might be helpful
+
+credentials for login are user/pass
