@@ -3,60 +3,60 @@ import getpass
 
 gradebook = {}
 
-defaultUser = 'user'
-defaultPass = 'pass'
+default_user = 'user'
+default_pass = 'pass'
 
-def login():
-    username = input('Username: ')
-    try:
-        password = getpass.getpass('Password: ')
-    except:
-        #shhhh it's ok
-        print('')
-
-    if(username != defaultUser or password != defaultPass):
-        print('invalid credentials')
-        login()
-    else:
-        prompt()
+logged_in = False
 
 def prompt():
-    print('Welcome to Grade Central')
-    print('')
-    print('[1] - Enter Grades')
-    print('[2] - Remove Student')
-    print('[3] - Student Average Grades')
-    print('[4] - Exit')
+    print("""
+    Welcome to Grade Central
 
-    print('')
-    mainLoop()
+    [1] - Enter Grades
+    [2] - Remove Student
+    [3] - Student Average Grades
+    [4] - Exit
 
-def mainLoop():
+    """)
+    main_loop()
+
+def main_loop():
     action = input('What would you like to do today? (Enter a number) ')
-    takeAction(action)
+    take_action(action)
 
 
-def takeAction(action):
-    if(action == '4'):
+def take_action(action):
+    if action == '4':
         print('Bye')
         return
 
-    if(action == 'help'):
+    if action == 'help':
         prompt()
-    elif(action == '1'):
-        studentName = input('Student Name: ')
+    elif action == '1':
+        student_name = input('Student Name: ')
         grade = input('Grade: ')
-        grades.addGrade(gradebook, studentName, float(grade))
-    elif(action == '2'):
-        studentName = input('Student Name: ')
-        grades.removeStudent(gradebook, studentName)
-    elif(action == '3'):
-        studentName = input('Student Name: ')
-        grades.studentAverageGrades(gradebook, studentName)
+        grades.add_grade(gradebook, student_name, float(grade))
+    elif action == '2':
+        student_name = input('Student Name: ')
+        grades.remove_student(gradebook, student_name)
+    elif action == '3':
+        student_name = input('Student Name: ')
+        grades.student_average_grades(gradebook, student_name)
     else:
         print('Unrecognized command',action);
 
     print(gradebook)
-    mainLoop()
+    main_loop()
+
+def login():
+    while True:
+        username = input('Username: ')
+        password = getpass.getpass('Password: ')
+
+        if username != default_user or password != default_pass:
+            print('Invalid credentials');
+        else:
+            prompt()
+            break
 
 login()
